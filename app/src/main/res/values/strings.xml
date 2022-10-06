@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">csgo</string>
+    <string name="base_url">https://api.pandascore.co/csgo/matches</string>
+</resources>
