@@ -142,13 +142,13 @@ enum class Status(val value: String) {
     }
 }
 
-@Serializable
+
 data class GameWinner (
     val id: Long? = null,
     val type: Type
 )
 
-@Serializable
+
 enum class Type(val value: String) {
     Team("Team");
 
@@ -166,7 +166,7 @@ enum class Type(val value: String) {
     }
 }
 
-@Serializable
+
 data class League (
     val id: Long,
 
@@ -176,64 +176,18 @@ data class League (
     @SerializedName("modified_at")
     val modifiedAt: String,
 
-    val name: LeagueName,
-    val slug: LeagueSlug,
+    @SerializedName("name")
+    val name: String,
+
+    @SerializedName("slug")
+    val slug: String,
+
+    @SerializedName("url")
     val url: String? = null
 )
 
-@Serializable
-enum class LeagueName(val value: String) {
-    BLASTPremier("BLAST Premier"),
-    Esea("ESEA"),
-    FiReLEAGUE("FiReLEAGUE"),
-    PolskaLigaEsportowa("Polska Liga Esportowa"),
-    SvenskaElitserien("Svenska Elitserien");
 
-    companion object : KSerializer<LeagueName> {
-        override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("quicktype.LeagueName", PrimitiveKind.STRING)
-        }
-        override fun deserialize(decoder: Decoder): LeagueName = when (val value = decoder.decodeString()) {
-            "BLAST Premier"         -> BLASTPremier
-            "ESEA"                  -> Esea
-            "FiReLEAGUE"            -> FiReLEAGUE
-            "Polska Liga Esportowa" -> PolskaLigaEsportowa
-            "Svenska Elitserien"    -> SvenskaElitserien
-            else                    -> throw IllegalArgumentException("LeagueName could not parse: $value")
-        }
-        override fun serialize(encoder: Encoder, value: LeagueName) {
-            return encoder.encodeString(value.value)
-        }
-    }
-}
 
-@Serializable
-enum class LeagueSlug(val value: String) {
-    CSGoBlastPremier("cs-go-blast-premier"),
-    CSGoEsea("cs-go-esea"),
-    CSGoFireleague("cs-go-fireleague"),
-    CSGoPolskaLigaEsportowa("cs-go-polska-liga-esportowa"),
-    CSGoSvenskaElitserien("cs-go-svenska-elitserien");
-
-    companion object : KSerializer<LeagueSlug> {
-        override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("quicktype.LeagueSlug", PrimitiveKind.STRING)
-        }
-        override fun deserialize(decoder: Decoder): LeagueSlug = when (val value = decoder.decodeString()) {
-            "cs-go-blast-premier"         -> CSGoBlastPremier
-            "cs-go-esea"                  -> CSGoEsea
-            "cs-go-fireleague"            -> CSGoFireleague
-            "cs-go-polska-liga-esportowa" -> CSGoPolskaLigaEsportowa
-            "cs-go-svenska-elitserien"    -> CSGoSvenskaElitserien
-            else                          -> throw IllegalArgumentException("LeagueSlug could not parse: $value")
-        }
-        override fun serialize(encoder: Encoder, value: LeagueSlug) {
-            return encoder.encodeString(value.value)
-        }
-    }
-}
-
-@Serializable
 data class Live (
     @SerializedName("opens_at")
     val opensAt: String? = null,
@@ -242,7 +196,7 @@ data class Live (
     val url: String? = null
 )
 
-@Serializable
+
 enum class MatchType(val value: String) {
     BestOf("best_of");
 
@@ -260,13 +214,13 @@ enum class MatchType(val value: String) {
     }
 }
 
-@Serializable
+
 data class Opponent (
     val opponent: OpponentClass,
     val type: Type
 )
 
-@Serializable
+
 data class OpponentClass (
     val acronym: JsonObject? = null,
     val id: Long,
@@ -283,7 +237,7 @@ data class OpponentClass (
     val slug: String
 )
 
-@Serializable
+
 data class Result (
     val score: Long,
 
@@ -291,7 +245,7 @@ data class Result (
     val teamID: Long
 )
 
-@Serializable
+
 data class Serie (
     @SerializedName("begin_at")
     val beginAt: String,
@@ -326,7 +280,7 @@ data class Serie (
     val year: Long
 )
 
-@Serializable
+
 enum class FullName(val value: String) {
     AdvancedEuropeSeason422022("Advanced Europe season 42 2022"),
     AmericanShowdownFall2022("American Showdown Fall 2022"),
@@ -354,7 +308,7 @@ enum class FullName(val value: String) {
     }
 }
 
-@Serializable
+
 enum class SerieName(val value: String) {
     AdvancedEurope("Advanced Europe"),
     AmericanShowdown("American Showdown"),
@@ -380,7 +334,6 @@ enum class SerieName(val value: String) {
     }
 }
 
-@Serializable
 enum class SerieSlug(val value: String) {
     CSGoBlastPremierAmericanShowdownFall2022("cs-go-blast-premier-american-showdown-fall-2022"),
     CSGoBlastPremierEuropeanShowdownFall2022("cs-go-blast-premier-european-showdown-fall-2022"),
@@ -408,7 +361,7 @@ enum class SerieSlug(val value: String) {
     }
 }
 
-@Serializable
+
 enum class Tier(val value: String) {
     A("a"),
     C("c"),
@@ -430,14 +383,13 @@ enum class Tier(val value: String) {
     }
 }
 
-@Serializable
+
 data class Streams (
     val english: English,
     val official: English,
     val russian: English
 )
 
-@Serializable
 data class English (
     @SerializedName("embed_url")
     val embedURL: String? = null,
@@ -446,7 +398,7 @@ data class English (
     val rawURL: String? = null
 )
 
-@Serializable
+
 data class StreamsList (
     @SerializedName("embed_url")
     val embedURL: String,
@@ -459,7 +411,7 @@ data class StreamsList (
     val rawURL: String
 )
 
-@Serializable
+
 enum class Language(val value: String) {
     En("en"),
     Es("es"),
@@ -487,7 +439,7 @@ enum class Language(val value: String) {
     }
 }
 
-@Serializable
+
 data class Tournament (
     @SerializedName("begin_at")
     val beginAt: String,
@@ -522,7 +474,6 @@ data class Tournament (
     val winnerType: Type
 )
 
-@Serializable
 enum class TournamentName(val value: String) {
     Playoffs("Playoffs"),
     RegularSeason("Regular Season");
@@ -542,7 +493,7 @@ enum class TournamentName(val value: String) {
     }
 }
 
-@Serializable
+
 enum class Prizepool(val value: String) {
     The150000UnitedStatesDollar("150000 United States Dollar"),
     The67500UnitedStatesDollar("67500 United States Dollar");
@@ -562,14 +513,13 @@ enum class Prizepool(val value: String) {
     }
 }
 
-@Serializable
 data class Videogame (
     val id: Long,
     val name: VideogameName,
     val slug: VideogameSlug
 )
 
-@Serializable
+
 enum class VideogameName(val value: String) {
     CSGo("CS:GO");
 
@@ -587,7 +537,7 @@ enum class VideogameName(val value: String) {
     }
 }
 
-@Serializable
+
 enum class VideogameSlug(val value: String) {
     CSGo("cs-go");
 
