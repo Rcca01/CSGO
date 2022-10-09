@@ -13,7 +13,7 @@ import com.example.csgo.model.Matches
 import com.example.csgo.model.Players
 
 
-class AdapterPlayersFirst: RecyclerView.Adapter<AdapterPlayersFirst.MyViewHolder>() {
+class AdapterPlayersSecond: RecyclerView.Adapter<AdapterPlayersSecond.MyViewHolder>() {
     var players = mutableListOf<Players>()
 
     fun setPlayersList(players: List<Players>) {
@@ -25,21 +25,21 @@ class AdapterPlayersFirst: RecyclerView.Adapter<AdapterPlayersFirst.MyViewHolder
         return players.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterPlayersFirst.MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_player_first_row, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterPlayersSecond.MyViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_player_second_row, parent, false)
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AdapterPlayersFirst.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AdapterPlayersSecond.MyViewHolder, position: Int) {
        val player = players[position]
-        holder.namePlayerFirst.text = player.firstName
-        holder.nickNameFirst.text = player.name
-        Glide.with(holder.itemView.context).load(player.imageURL).into(holder.imagePlayerFirst)
+        holder.nickNameSecond.text = player.firstName
+        holder.namePlayerSecond.text = player.name
+        Glide.with(holder.itemView.context).load(player.imageURL).into(holder.imagePlayerSecond)
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var nickNameFirst: TextView = itemView.findViewById(R.id.nickNameFirst)
-        var namePlayerFirst: TextView = itemView.findViewById(R.id.namePlayerFirst)
-        var imagePlayerFirst: ImageView = itemView.findViewById(R.id.imagePlayerFirst)
+        var nickNameSecond: TextView = itemView.findViewById(R.id.nickNameSecond)
+        var namePlayerSecond: TextView = itemView.findViewById(R.id.namePlayerSecond)
+        var imagePlayerSecond: ImageView = itemView.findViewById(R.id.imagePlayerSecond)
     }
 }

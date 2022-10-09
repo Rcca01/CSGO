@@ -10,18 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.csgo.R
 import com.example.csgo.model.Matches
-import com.example.csgo.model.Opponent
+import com.example.csgo.model.Result
+import com.example.csgo.utils.Utils
 import org.w3c.dom.Text
+
+const val FIRST_OPPONENT = 0
+const val SECOND_OPPONENT = 1
 
 class RecycleviewItemAdapter: RecyclerView.Adapter<RecycleviewItemAdapter.MyViewHolder>() {
     var matches = mutableListOf<Matches>()
 
-    fun setMatchesList(movies: List<Matches>) {
-        this.matches = movies.toMutableList()
+    fun setMatchesList(matches: List<Matches>) {
+        this.matches = matches.toMutableList()
         notifyDataSetChanged()
     }
 
-    private var clickListener: ClickListener<List<Opponent>>? = null
+    private var clickListener: ClickListener<List<Result>>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_row, parent, false)
@@ -31,17 +35,23 @@ class RecycleviewItemAdapter: RecyclerView.Adapter<RecycleviewItemAdapter.MyView
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = matches[position].opponents
         if(item.size == 2){
-            Glide.with(holder.itemView.context).load(item[0].opponent.imageURL).into(holder.imageClub1)
-            holder.nameClub1.text = item[0].opponent.name
+            Glide.with(holder.itemView.context).load(item[FIRST_OPPONENT].opponent.imageURL).into(holder.imageClub1)
+            holder.nameClub1.text = item[FIRST_OPPONENT].opponent.name
 
+            Glide.with(holder.itemView.context).load(item[SECOND_OPPONENT].opponent.imageURL).into(holder.imageClub2)
+            holder.nameClub2.text = item[SECOND_OPPONENT].opponent.name
 
-            Glide.with(holder.itemView.context).load(item[1].opponent.imageURL).into(holder.imageClub2)
-            holder.nameClub2.text = item[1].opponent.name
+            Glide.with(holder.itemView.context).load(matches[position].league.imageURL).into(holder.leagueImage3)
+            holder.nameLeague.text = matches[position].league.name
 
-            Glide.with(holder.itemView.context).load(item[1].opponent.imageURL).into(holder.leagueImage3)
-            holder.nameLeague.text = matches[position].league.name.toString()
+            holder.timeGame.text = Utils().getDayFromDateString(matches[position].scheduledAt)
 
-            //holder.itemLayout.setOnClickListener { v -> clickListener!!.onClick(v, item!!, position) }
+            holder.itemLayout.setOnClickListener { v -> clickListener!!.onClick(
+                matches[position].results,
+                item,
+                matches[position].league.name,
+                matches[position].scheduledAt
+            ) }
         }
     }
 
@@ -49,8 +59,12 @@ class RecycleviewItemAdapter: RecyclerView.Adapter<RecycleviewItemAdapter.MyView
         return matches.size
     }
 
-    fun setOnItemClickListener(clickListener: ClickListener<List<Opponent>>) {
+    fun setOnItemClickListener(clickListener: ClickListener<List<Result>>) {
         this.clickListener = clickListener
+    }
+
+    override fun getItemId(position: Int): Long {
+        return matches[position].id
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -61,6 +75,7 @@ class RecycleviewItemAdapter: RecyclerView.Adapter<RecycleviewItemAdapter.MyView
         var nameClub2: TextView = itemView.findViewById(R.id.clubName2)
         var nameLeague: TextView = itemView.findViewById(R.id.nameLeague)
         val itemLayout: CardView = itemView.findViewById(R.id.itemLayout)
+        val timeGame: TextView = itemView.findViewById(R.id.timeGame)
 
     }
 }
