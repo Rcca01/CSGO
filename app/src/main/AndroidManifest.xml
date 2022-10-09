@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Csgo">
         <activity
+            android:name=".view.MatchDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.CsGoActivity"
             android:exported="true">
             <intent-filter>

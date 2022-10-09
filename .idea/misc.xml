@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/border_text_view.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/activity_cs_go.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/activity_list_matches.xml" value="0.24427083333333333" />
-        <entry key="app/src/main/res/layout/item_row.xml" value="0.24427083333333333" />
+        <entry key="app/src/main/res/layout/activity_match_details.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/fragment_detail_match.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/item_player_first_row.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_player_row.xml" value="0.24427083333333333" />
+        <entry key="app/src/main/res/layout/item_player_second_row.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_row.xml" value="0.5" />
       </map>
     </option>
   </component>

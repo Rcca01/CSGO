@@ -1,16 +1,22 @@
 package com.example.csgo.service
 
 import com.example.csgo.model.Matches
+import com.example.csgo.model.Players
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PandaScoreService {
     @GET("matches")
-    fun getListMatches(): Call<List<Matches>>
+    fun getListMatches(@Query("sort") sort: String = "scheduled_at"): Call<List<Matches>>
+
+    @GET("players")
+    fun getListPlayersTeam(@Query("filter[team_id]") teamId: String): Call<List<Players>>
 
     companion object {
         var retrofitService: PandaScoreService? = null
