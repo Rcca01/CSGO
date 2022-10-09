@@ -16,6 +16,13 @@
             android:exported="false" />
         <activity
             android:name=".view.CsGoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".view.SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
