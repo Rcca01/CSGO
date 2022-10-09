@@ -71,7 +71,7 @@ data class Matches (
     val matchType: MatchType,
 
     @SerializedName("videogame_version")
-    val videogameVersion: JsonObject? = null,
+    val videogameVersion: String? = null,
 
     @SerializedName("tournament_id")
     val tournamentID: Long,
@@ -112,7 +112,7 @@ data class Game (
     val status: Status,
 
     @SerializedName("video_url")
-    val videoURL: JsonObject? = null,
+    val videoURL: String? = null,
 
     val winner: GameWinner,
 
@@ -222,7 +222,7 @@ data class Opponent (
 
 
 data class OpponentClass (
-    val acronym: JsonObject? = null,
+    val acronym: String? = null,
     val id: Long,
 
     @SerializedName("image_url")
@@ -250,7 +250,7 @@ data class Serie (
     @SerializedName("begin_at")
     val beginAt: String,
 
-    val description: JsonObject? = null,
+    val description: String? = null,
 
     @SerializedName("end_at")
     val endAt: String? = null,
@@ -272,10 +272,10 @@ data class Serie (
     val tier: Tier,
 
     @SerializedName("winner_id")
-    val winnerID: JsonObject? = null,
+    val winnerID: String? = null,
 
     @SerializedName("winner_type")
-    val winnerType: JsonObject? = null,
+    val winnerType: String? = null,
 
     val year: Long
 )
@@ -468,7 +468,7 @@ data class Tournament (
     val tier: Tier,
 
     @SerializedName("winner_id")
-    val winnerID: JsonObject? = null,
+    val winnerID: String? = null,
 
     @SerializedName("winner_type")
     val winnerType: Type
