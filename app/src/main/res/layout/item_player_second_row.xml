@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottomCard"
+        style="@style/CustomCardCornersLeft"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/background_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        app:cardBackgroundColor="@color/background_card"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomCard"
+        app:layout_constraintEnd_toEndOf="@+id/bottomCard"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/bottomCard">
+
+        <TextView
+            android:id="@+id/nickNameSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="16dp"
+            android:text="Nickname"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/namePlayerSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="22dp"
+            android:fontWeight="300"
+            android:text="Nome do jogador"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/purple_700"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomCard"
+        app:layout_constraintStart_toStartOf="@+id/bottomCard"
+        app:layout_constraintTop_toTopOf="@id/bottomCard">
+
+        <ImageView
+            android:id="@+id/imagePlayerSecond"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
